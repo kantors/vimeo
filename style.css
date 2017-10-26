@@ -1,5 +1,31 @@
 body {
     margin: 0;
+    font-family: sans-serif;
+}
+
+p {
+    font-size: 400;
+}
+
+.chevron::before {
+    border-style: solid;
+    border-width: 0.15em 0.15em 0 0;
+    content: '';
+    color: white;
+    display: inline-block;
+    height: 1.5em;
+    left: 0.15em;
+    top: 0.15em;
+    left: 0;
+    transform: rotate(45deg);
+    vertical-align: top;
+    width: 1.5em;
+    opacity: .9;
+}
+
+.chevron.left:before {
+    left: 0.25em;
+    transform: rotate(-135deg);
 }
 
 .grey-bg {
@@ -41,6 +67,119 @@ body {
     width: 100%;
 }
 
+
+/* Slider Styles  */
+
+#slider-wrapper {
+    padding: 0px;
+    width: 100%;
+    overflow: hidden;
+    height: 500px;
+    position: relative;
+}
+
+.arrow-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 100%;
+}
+
+#prev {
+    left: 5%;
+    position: absolute;
+    cursor: pointer;
+}
+
+#next {
+    right: 5%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.inactive#next, .inactive#prev {
+    cursor: default;
+    opacity: .4;
+}
+
+.slider {
+    width: 400%;
+    position: relative;
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    align-items: center;
+    display: flex;
+    left: 0;
+    -webkit-transition: left 300ms ease-in-out;
+    -moz-transition: left 300ms ease-in-out;
+    -o-transition: left 300ms ease-in-out;
+    transition: left 300ms ease-in-out;
+}
+
+.slide {
+    position: relative;
+    width: 25%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide-bg {
+    height: 100%;
+    width: 100%;
+    background-image: url("https://i.vimeocdn.com/video/590587169_530x315.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+}
+
+.content {
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    padding: 100px 15%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    align-items: center;
+    display: flex;
+}
+
+.content img, .content .div {
+    margin: 5%;
+}
+
+.content img {
+    width: 30%;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.content .button {
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    width: 35%;
+    border-radius: 3px;
+    margin: 10px 15px 10px 0px;
+    padding: 10px 10px;
+    border: 1px solid #316E9B;
+}
+
+.content .button:hover {
+    background: #316E9B;
+    color: white;
+}
+
 @media only screen and (max-width: 1050px) {
     .image-wrapper {
         width: 60%;
@@ -52,11 +191,21 @@ body {
         padding: 0px;
         margin: 0 auto;
     }
-    .section-wrapper {
+    .section-wrapper, .content {
         display: -webkit-flex;
         display: flex;
         -webkit-flex-direction: column;
         flex-direction: column;
+    }
+    #slider-wrapper {
+        height: 650px;
+    }
+    .content {
+        padding: 20px 10%;
+    }
+    .content img {
+        width: auto;
+        max-height: 200px;
     }
     .section-wrapper:nth-child(odd) .image-wrapper {
         order: 2;
@@ -64,9 +213,9 @@ body {
 }
 
 @media only screen and (max-width: 470px) {
-  .section-wrapper {
-    padding: 100px 20px;
-  }
+    .section-wrapper {
+        padding: 100px 20px;
+    }
     .image-wrapper {
         width: 100%;
     }
