@@ -117,10 +117,9 @@ p {
     font-smoothing: antialiased;
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000;
-    transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform 0.3s ease 0s;
-    -moz-transition: -moz-transform 0.3s ease 0s;
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 0.3s ease-in-out 0s;
     transition: transform 0.3s ease 0s;
 }
 

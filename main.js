@@ -32,8 +32,8 @@ Slider.prototype = {
             this.currIndex += 1;
             var sliderPos = parseInt($(".slider").css('transform').split(',')[4]) - this.slideWidth;
             $(".slider").css({
-                "transform": "translateX(" + sliderPos + "px)",
-                "webkit-transform": "translateX(" + sliderPos + "px)"
+                "transform": "translate3D(" + sliderPos + "px, 0, 0)",
+                "webkit-transform": "translate3D(" + sliderPos + "px, 0, 0)"
             });
         }
 
@@ -48,8 +48,8 @@ Slider.prototype = {
             this.currIndex -= 1;
             var sliderPos = parseInt($(".slider").css('transform').split(',')[4]) + this.slideWidth;
             $(".slider").css({
-                "transform": "translateX(" + sliderPos + "px)",
-                "webkit-transform": "translateX(" + sliderPos + "px)"
+                "transform": "translate3D(" + sliderPos + "px, 0, 0)",
+                "webkit-transform": "translate3D(" + sliderPos + "px, 0, 0)"
             });
             if (this.currIndex === 0) {
                 $("#prev").addClass("inactive");
