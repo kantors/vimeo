@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 $(window).resize(function() {
     setUp();
-    $(".slider").css({"left": 0});
+    $(".slider").css({"transform": "translateX(0px)"});
 });
 
 function setUp() {
@@ -30,8 +30,11 @@ Slider.prototype = {
         var sliderPos = parseInt($(".slider").css("left")) - this.slideWidth;
         if (this.currIndex < this.range) {
             this.currIndex += 1;
-            var sliderPos = parseInt($(".slider").css("left")) - this.slideWidth;
-            $(".slider").css({"left": sliderPos});
+            var sliderPos = parseInt($(".slider").css('transform').split(',')[4]) - this.slideWidth;
+            $(".slider").css({
+                "transform": "translateX(" + sliderPos + "px)",
+                "webkit-transform": "translateX(" + sliderPos + "px)"
+            });
         }
 
         if (this.currIndex === this.range) {
@@ -43,8 +46,11 @@ Slider.prototype = {
         console.log(this.currIndex);
         if (this.currIndex > 0) {
             this.currIndex -= 1;
-            var sliderPos = parseInt($(".slider").css("left")) + this.slideWidth;
-            $(".slider").css({"left": sliderPos});
+            var sliderPos = parseInt($(".slider").css('transform').split(',')[4]) + this.slideWidth;
+            $(".slider").css({
+                "transform": "translateX(" + sliderPos + "px)",
+                "webkit-transform": "translateX(" + sliderPos + "px)"
+            });
             if (this.currIndex === 0) {
                 $("#prev").addClass("inactive");
             }

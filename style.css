@@ -1,10 +1,11 @@
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 p {
-    font-size: 400;
+    font-weight: 300;
+    line-height: 1.5;
 }
 
 .chevron::before {
@@ -74,7 +75,7 @@ p {
     padding: 0px;
     width: 100%;
     overflow: hidden;
-    height: 500px;
+    height: 560px;
     position: relative;
 }
 
@@ -100,7 +101,7 @@ p {
 
 .inactive#next, .inactive#prev {
     cursor: default;
-    opacity: .4;
+    opacity: .3;
 }
 
 .slider {
@@ -113,11 +114,14 @@ p {
     display: -webkit-flex;
     align-items: center;
     display: flex;
-    left: 0;
-    -webkit-transition: left 300ms ease-in-out;
-    -moz-transition: left 300ms ease-in-out;
-    -o-transition: left 300ms ease-in-out;
-    transition: left 300ms ease-in-out;
+    font-smoothing: antialiased;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-transition: -webkit-transform 0.3s ease 0s;
+    -moz-transition: -moz-transform 0.3s ease 0s;
+    transition: transform 0.3s ease 0s;
 }
 
 .slide {
@@ -128,21 +132,42 @@ p {
 }
 
 .slide-bg {
-    height: 100%;
-    width: 100%;
+    margin: -20px -20px;
+    height: 105%;
+    width: 105%;
     background-image: url("https://i.vimeocdn.com/video/590587169_530x315.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    filter: blur(10px);
-    -webkit-filter: blur(10px);
-    -moz-filter: blur(10px);
-    -o-filter: blur(10px);
-    -ms-filter: blur(10px);
+    filter: blur(10px) saturate(.7) brightness(.4) contrast(.9);
+    -webkit-filter: blur(10px) saturate(.6) brightness(.4) contrast(.9);
+    -moz-filter: blur(10px) saturate(.7) brightness(.4) contrast(.9);
+    -o-filter: blur(10px) saturate(.7) brightness(.4) contrast(.9);
+    -ms-filter: blur(10px) saturate(.7) brightness(.4) contrast(.9);
+}
+
+#way-way-back .slide-bg {
+    background-size: 175%;
+    background-image: url("assets/the_way_way_back.jpg");
+}
+
+#imitation-game .slide-bg {
+    opacity: .8;
+    background-size: 175%;
+    background-image: url("assets/the_imitation_game.jpg");
+}
+
+#her .slide-bg {
+    background-image: url("assets/her.jpg");
+}
+
+#interstellar .slide-bg {
+    background-image: url("assets/interstellar.jpg");
 }
 
 .content {
     position: absolute;
     z-index: 1;
+    color: white;
     top: 0px;
     padding: 100px 15%;
     display: -webkit-box;
@@ -153,31 +178,61 @@ p {
     display: flex;
 }
 
-.content img, .content .div {
+.content-image, .content .div {
     margin: 5%;
 }
 
-.content img {
-    width: 30%;
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+.content-image {
+    max-height: 320px;
+    -webkit-box-shadow: 1px 1px 28px -6px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 1px 1px 28px -6px rgba(0, 0, 0, 1);
+    box-shadow: 1px 1px 28px -6px rgba(0, 0, 0, 1);
 }
 
 .content .button {
     display: inline-block;
     cursor: pointer;
-    text-align: center;
     width: 35%;
     border-radius: 3px;
     margin: 10px 15px 10px 0px;
-    padding: 10px 10px;
+    padding: 12px 10px;
+    background: #316E9B;
     border: 1px solid #316E9B;
+    text-align: center;
+    position: relative;
 }
 
-.content .button:hover {
-    background: #316E9B;
-    color: white;
+#way-way-back .button.buy {
+    background: #199CD4;
+    border: 1px solid #199CD4;
+}
+
+#imitation-game .button.buy {
+    background: #594F51;
+    border: 1px solid #594F51;
+}
+
+#her .button.buy {
+    background: #CE113E;
+    border: 1px solid #CE113E;
+}
+
+.content .button.buy span {
+    margin-left: 25%;
+}
+
+.content .button.trailer {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.6)
+}
+
+.content .hexigon {
+    width: 15%;
+    max-height: 25px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 10px
 }
 
 @media only screen and (max-width: 1050px) {
@@ -203,9 +258,9 @@ p {
     .content {
         padding: 20px 10%;
     }
-    .content img {
+    .content-image {
         width: auto;
-        max-height: 200px;
+        max-height: 230px;
     }
     .section-wrapper:nth-child(odd) .image-wrapper {
         order: 2;
@@ -221,5 +276,12 @@ p {
     }
     .text-wrapper {
         width: 100%;
+    }
+    #slider-wrapper .content {
+        padding: 20px 15%;
+    }
+    .content .button {
+        width: 80%;
+        display: block;
     }
 }
